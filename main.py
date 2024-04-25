@@ -54,8 +54,6 @@ class data():
 
 # 按间距中的绿色按钮以运行脚本。
 if __name__ == '__main__':
-    print_hi('PyCharm')
-
     params = {
         '$format': 'JSON',
     }
@@ -66,17 +64,13 @@ if __name__ == '__main__':
         # 根據表名打開sheet表
     sheet1 = wb[sheet_names[0]]  # 打開第一個 sheet 工作表
 
-    # 獲取C列的所有資料
+    # 獲取N列的所有資料
     list_sheet1_column_N = []  # 請求參數
 
     # for b, e, c, a,f in zip(sheet1["B"], sheet1["E"], sheet1["C"], sheet1["A"],sheet1["F"]):
     for e in sheet1["N"]:
          list_sheet1_column_N.append(e.value)
 
-         # list_sheet1_column_B.append(b.value)
-         # list_sheet1_column_C.append(c.value)
-         # list_sheet1_column_A.append(a.value)
-         # list_sheet1_column_F.append(f.value)
     row = 2
     print(f'excel_ID: {e.value}\nexcel_type: {type(e.value)}')
     # json_data = list(e.value)
@@ -89,16 +83,16 @@ if __name__ == '__main__':
         try:
             a = Auth(app_id, app_key)
             auth_response = requests.post(auth_url, a.get_auth_header())
-            # ReadAPI.verdict(row, url, str_param, sheet1, method)  # 讀寫excel
+
             d = data(app_id, app_key, auth_response)
             res_dist = requests.post(url_len, params=params, headers=d.get_data_header(), json=json_data)
             # print(f'res_dist: {res_dist}\nres_dist: {type(res_dist)}')
-            dist_list = json.loads(res_dist.text)
-            # print(f'res_dist: {dist_list}')
+            dist_list = json.loads(res_dist.text)  ##這邊順序就變了 2023/12/18
+            print(f'res_dist: {dist_list}')
             route_dist = 0
             for link in dist_list:
                 route_dist += link["Length"]
-                print(f'route[{link["LinkID"]}]_dist:" {route_dist}')
+                print(f'LinkID:{link["LinkID"]}\tLength:" {route_dist}')
             # ls.append(res_dist)
             print(f'route_dist: {route_dist}')
 

@@ -138,7 +138,7 @@ if __name__ == '__main__':
         ls.append(UpdateDate)
         for link in dist_list:
             res_dist += link["Length"]
-            print("res_dist:", res_dist)
+            # print("res_dist:", res_dist)
         ls.append(res_dist)
 
         result.append(ls)

@@ -65,7 +65,7 @@ if __name__ == '__main__':
         '0000101007000F',
         '0000101007010F',
     ]
-    print(f'json_data: {type(json_data)}')
+    print(f'json_data: {json_data}\njson_type: {type(json_data)}')
     try:
         d = data(app_id, app_key, auth_response)
         data_response = requests.get(url, headers=d.get_data_header())
