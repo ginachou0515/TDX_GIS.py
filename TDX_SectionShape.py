@@ -110,7 +110,7 @@ if __name__ == '__main__':
         Geometry_result = []
 ###20240425######
 ##已處理首尾重複,用移除重複值容易發生四捨五入一樣被誤刪的事故
-##待處理浮點數五位數末碼為0會消失議題
+##已處理浮點數五位數末碼為0會消失議題
         index = 1  ##路段的第幾組LINKID
         for link in res_list:
             Geo = link["Geometry"]
@@ -130,9 +130,9 @@ if __name__ == '__main__':
                 else:
                     tempGeo_s4 = point.split(" ")
                     tempLon1 = float(tempGeo_s4[0])
-                    tempLon1 = round(tempLon1, 5)
+                    tempLon1 = format(round(tempLon1, 5),'.5f') ##保持輸出格式為浮點數五位數，末碼為0不會消失
                     tempLat1 = float(tempGeo_s4[1])
-                    tempLat1 = round(tempLat1, 5)
+                    tempLat1 = format(round(tempLat1, 5),'.5f')
                     point = str(tempLon1) + " " + str(tempLat1)
                     # print(f'point:{point}')
                     Geometry_result.append(point)
